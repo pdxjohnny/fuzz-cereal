@@ -1,0 +1,3 @@
+[submodule "src/deps/cereal"]
+	path = src/deps/cereal
+	url = https://github.com/USCiLab/cereal.git
