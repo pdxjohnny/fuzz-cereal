@@ -27,32 +27,16 @@ struct Normal
 };
 
 int main(int argc, char ** argv) {
-    /*
-    {
-        Minimal m = {"minimal"};
-        Normal  n = {"normal"};
+    Minimal m;
+    Normal  n;
 
-        std::ofstream os("data.xml");
-        cereal::BinaryOutputArchive oar(os);
-        oar( CEREAL_NVP(m), CEREAL_NVP(n) );
-    }
-    */
-
-    {
-        Minimal m;
-        Normal  n;
-
-        if (argc == 2) {
-            std::ifstream is(argv[1]);
-            cereal::BinaryInputArchive iar(is);
-            iar(m, n);
-        } else {
-            cereal::BinaryInputArchive iar(std::cin);
-            iar(m, n);
-        }
-
-        cereal::JSONOutputArchive oar(std::cout);
-        oar( CEREAL_NVP(m), CEREAL_NVP(n) );
+    if (argc == 2) {
+        std::ifstream is(argv[1]);
+        cereal::BinaryInputArchive iar(is);
+        iar(m, n);
+    } else {
+        cereal::BinaryInputArchive iar(std::cin);
+        iar(m, n);
     }
 }
 
