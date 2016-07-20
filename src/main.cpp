@@ -26,8 +26,7 @@ struct Normal
   { ar( myData ); }
 };
 
-int main()
-{
+int main(int argc, char ** argv) {
     /*
     {
         Minimal m = {"minimal"};
@@ -43,10 +42,14 @@ int main()
         Minimal m;
         Normal  n;
 
-        // std::ifstream is("data.xml");
-        // cereal::BinaryInputArchive iar(is);
-        cereal::BinaryInputArchive iar(std::cin);
-        iar(m, n);
+        if (argc == 2) {
+            std::ifstream is(argv[1]);
+            cereal::BinaryInputArchive iar(is);
+            iar(m, n);
+        } else {
+            cereal::BinaryInputArchive iar(std::cin);
+            iar(m, n);
+        }
 
         cereal::JSONOutputArchive oar(std::cout);
         oar( CEREAL_NVP(m), CEREAL_NVP(n) );
